@@ -6,7 +6,7 @@ StartLimitIntervalSec=10
 [Service]
 User=pi
 ExecStartPre=/bin/sh -c 'until ping -c1 google.com; do sleep 1; done;'
-ExecStart=/home/pi/able_fr24/able_fr24.py
+ExecStart=/home/pi/able-fr24/able_fr24.py
 Restart=on-failure
 RestartSec=60
 
