@@ -15,6 +15,10 @@ fi
 
 if [ "$2" = enable ]
 then
+    if [ ! -f $local ]
+    then
+        >$local
+    fi
     sudo tailscale funnel --set-path $path -bg "$local"
 elif [ "$2" = disable ]
 then
