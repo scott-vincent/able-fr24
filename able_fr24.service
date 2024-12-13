@@ -1,0 +1,14 @@
+[Unit]
+Description=able_fr24 Service
+After=network.target
+StartLimitIntervalSec=10
+
+[Service]
+User=pi
+ExecStartPre=/bin/sh -c 'until ping -c1 google.com; do sleep 1; done;'
+ExecStart=/home/pi/able_fr24/able_fr24.py
+Restart=on-failure
+RestartSec=60
+
+[Install]
+WantedBy=multi-user.target

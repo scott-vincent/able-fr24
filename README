@@ -1,0 +1,6 @@
+able_fr24 runs on RasPi2 inside the black box with four 7-segment displays.
+
+It writes /dev/shm/fr24_data which is read by able_display and also autopilot_panel.
+It also writes /dev/shm/fr24_live_data which is read by able_live GUI (via tailscale).
+
+NOTE: The service and tailscale scripts should be run on the able_display host (not RasPi5).
