@@ -2,11 +2,11 @@ usage="Usage: $0 [fr24_data|fr24_live_data] [enable|disable]"
 
 if [ "$1" = fr24_data ]
 then
-    local="/dev/shm/fr24_data"
+    local="/tmp/fr24_data"
     path="/fr24_data"
 elif [ "$1" = fr24_live_data ]
 then
-    local="/dev/shm/fr24_live_data"
+    local="/tmp/fr24_live_data"
     path="/fr24_live_data"
 else
     echo "$usage"

@@ -6,8 +6,8 @@ import os
 from FlightRadar24.api import FlightRadar24API
 fr_api = FlightRadar24API()
 
-DataFile = "/dev/shm/fr24_data"
-LiveFile = "/dev/shm/fr24_live_data"
+DataFile = "/tmp/fr24_data"
+LiveFile = "/tmp/fr24_live_data"
 
 def getDate(secs):
     if secs == None:
