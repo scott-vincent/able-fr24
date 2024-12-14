@@ -123,7 +123,7 @@ def ableAlt(flight):
     if flight.altitude > 9999:
         return "99"
 
-    return f"{math.floor(flight.altitude / 100):02d}"
+    return f"{math.round(flight.altitude / 100):02d}"
 
 def ableLive(num, flight):
     if flight == None:
