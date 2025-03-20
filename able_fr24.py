@@ -130,7 +130,15 @@ def ableLive(num, flight):
     if flight == None:
         return ""
 
-    flightInfo = fr_api.get_flight_details(flight)
+    success = False
+    while not success:
+        try:
+            flightInfo = fr_api.get_flight_details(flight)
+            success = True
+        except:
+            success = False
+            time.sleep(2)
+
     if flightInfo == None:
         trail = None
         typeCode = "NONE"
