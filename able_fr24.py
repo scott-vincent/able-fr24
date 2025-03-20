@@ -68,6 +68,7 @@ def getFlights(bounds):
             success = True
         except:
             success = False
+            time.sleep(2)
 
     able = []
     for i in range(16):
