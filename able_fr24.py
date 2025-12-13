@@ -46,7 +46,7 @@ def fixCallsign(callsign):
         callsign = "ABLE07"
     elif suffix == "SAUP":
         callsign = "ABLE08"
-    elif suffix == "ICAN":
+    elif suffix == "OFTR":
         callsign = "ABLE10"
     elif suffix == "BNNY":
         callsign = "ABLE11"
