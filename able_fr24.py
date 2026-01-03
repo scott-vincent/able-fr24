@@ -22,6 +22,9 @@ def getTime(secs):
     return time.strftime("%H%M", time.localtime(secs))
 
 def fixCallsign(callsign):
+    if callsign == "ABLE1E":
+        callsign = "ABLE10"
+
     if len(callsign) < 4 or callsign[0] != "G":
         return callsign
 
