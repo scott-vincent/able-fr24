@@ -51,7 +51,7 @@ def fixCallsign(callsign):
         callsign = "ABLE08"
     elif suffix == "OFTR":
         callsign = "ABLE10"
-    elif suffix == "BNNY":
+    elif suffix == "XXXXX":
         callsign = "ABLE11"
     elif suffix == "BRUD":
         callsign = "ABLE12"
@@ -59,6 +59,11 @@ def fixCallsign(callsign):
         callsign = "ABLE14"
 
     return callsign
+
+def printFlight(i, flight):
+        print("Flight", i, "=", flight)
+        if flight != None:
+            print("hdg", flight.heading, "alt", flight.altitude)
 
 def getFlights(bounds):
     global lastAbleData
@@ -95,6 +100,7 @@ def getFlights(bounds):
             continue
 
         able[ableNum - 1] = flight
+        #printFlight(ableNum, flight)
 
     ableData = ""
     ableLiveData = ""
@@ -133,21 +139,20 @@ def ableLive(num, flight):
     if flight == None:
         return ""
 
-    success = False
-    while not success:
-        try:
-            flightInfo = fr_api.get_flight_details(flight)
-            success = True
-        except:
-            success = False
-            time.sleep(2)
+    try:
+        flightInfo = fr_api.get_flight_details(flight)
+    except:
+        flightInfo = None
 
     if flightInfo == None:
         trail = None
         typeCode = "NONE"
     else:
         trail = flightInfo.get("trail")
-        typeCode = flightInfo["aircraft"]["model"]["code"]
+        try:
+            typeCode = flightInfo["aircraft"]["model"]["code"]
+        except:
+            typeCode = "----"
 
     if trail == None:
         lat = flight.latitude
