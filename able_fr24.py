@@ -3,6 +3,7 @@ import sys
 import math
 import time
 import os
+from pprint import pprint
 from FlightRadar24.api import FlightRadar24API
 fr_api = FlightRadar24API()
 
@@ -61,9 +62,10 @@ def fixCallsign(callsign):
     return callsign
 
 def printFlight(i, flight):
-        print("Flight", i, "=", flight)
+        #print("Flight", i, ":")
+        #pprint(vars(flight))
         if flight != None:
-            print("hdg", flight.heading, "alt", flight.altitude)
+            print(fixCallsign(flight.callsign), "(", flight.aircraft_code, ") hdg:", flight.heading, "spd", flight.ground_speed, "alt:", flight.altitude)
 
 def getFlights(bounds):
     global lastAbleData
@@ -105,7 +107,9 @@ def getFlights(bounds):
     ableData = ""
     ableLiveData = ""
     for i in range(16):
-        ableLiveData += ableLive(i + 1, able[i])
+        # Only show ABLE12 on map if no previous ABLES found
+        if i == 11 and ableLiveData == "":
+            ableLiveData += ableLive(i + 1, able[i])
 
         if i > 11:
             continue
@@ -146,13 +150,13 @@ def ableLive(num, flight):
 
     if flightInfo == None:
         trail = None
-        typeCode = "NONE"
+        typeCode = flight.aircraft_code
     else:
         trail = flightInfo.get("trail")
         try:
             typeCode = flightInfo["aircraft"]["model"]["code"]
         except:
-            typeCode = "----"
+            typeCode = flight.aircraft_code
 
     if trail == None:
         lat = flight.latitude
