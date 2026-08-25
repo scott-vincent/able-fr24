@@ -75,9 +75,11 @@ def getFlights(bounds):
     while not success:
         try:
             flights = fr_api.get_flights(bounds = bounds)
-            success = True
+            if len(flights) > 0:
+                success = True
+            else:
+                time.sleep(2)
         except:
-            success = False
             time.sleep(2)
 
     able = []
